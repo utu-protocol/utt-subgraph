@@ -14,3 +14,14 @@ type EndorseEntity @entity {
   _value: BigInt # uint256
   _transactionId: String # string
 }
+
+#type StakedAmountByEntity @entity {
+#  id: ID!
+#  address: Bytes # address
+#  amount: BigInt # uint256
+#}
+#type StakedAmountOnEntity @entity {
+#  id: ID!
+#  address: Bytes # address
+#  amount: BigInt # uint256
+#}
