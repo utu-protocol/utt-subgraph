@@ -15,7 +15,7 @@ import {
     Transfer,
     Unpaused,
 } from "../generated/UTT/UTT";
-import {ConnectionEntity, EndorseEntity} from "../generated/schema";
+import {ConnectionEntity, EndorseEntity, StakedAmountByEntity, StakedAmountOnEntity} from "../generated/schema";
 
 export function handleAddConnection(event: AddConnection): void {
     // Entities can be loaded from the store using a string ID; this ID
@@ -90,33 +90,33 @@ export function handleChainlinkFulfilled(event: ChainlinkFulfilled): void {
 export function handleChainlinkRequested(event: ChainlinkRequested): void {
 }
 
-// function handleStakedBy(event: Endorse): void {
-//     let entity = StakedAmountByEntity.load(event.params._from.toHex());
-//
-//     // Entities only exist after they have been saved to the store;
-//     // `null` checks allow to create entities on demand
-//     if (!entity) {
-//         entity = new StakedAmountByEntity(event.params._from.toHex());
-//     }
-//     const amount = (entity.amount || BigInt.zero()) as BigInt;
-//     entity.address = event.params._from;
-//     entity.amount = event.params._value.plus(amount);
-//     entity.save()
-// }
-//
-// function handleStakedOn(event: Endorse): void {
-//     let entity = StakedAmountOnEntity.load(event.params._to.toHex());
-//
-//     // Entities only exist after they have been saved to the store;
-//     // `null` checks allow to create entities on demand
-//     if (!entity) {
-//         entity = new StakedAmountOnEntity(event.params._to.toHex());
-//     }
-//     const amount = (entity.amount || BigInt.zero()) as BigInt;
-//     entity.address = event.params._to;
-//     entity.amount = event.params._value.plus(amount);
-//     entity.save()
-// }
+function handleStakedBy(event: Endorse): void {
+    let entity = StakedAmountByEntity.load(event.params._from.toHex());
+
+    // Entities only exist after they have been saved to the store;
+    // `null` checks allow to create entities on demand
+    if (!entity) {
+        entity = new StakedAmountByEntity(event.params._from.toHex());
+    }
+    const amount = (entity.amount || BigInt.zero()) as BigInt;
+    entity.address = event.params._from;
+    entity.amount = event.params._value.plus(amount);
+    entity.save()
+}
+
+function handleStakedOn(event: Endorse): void {
+    let entity = StakedAmountOnEntity.load(event.params._to.toHex());
+
+    // Entities only exist after they have been saved to the store;
+    // `null` checks allow to create entities on demand
+    if (!entity) {
+        entity = new StakedAmountOnEntity(event.params._to.toHex());
+    }
+    const amount = (entity.amount || BigInt.zero()) as BigInt;
+    entity.address = event.params._to;
+    entity.amount = event.params._value.plus(amount);
+    entity.save()
+}
 
 export function handleEndorse(event: Endorse): void {
     // Entities can be loaded from the store using a string ID; this ID
@@ -141,8 +141,8 @@ export function handleEndorse(event: Endorse): void {
     // Entities can be written to the store with `.save()`
     entity.save();
 
-    // handleStakedOn(event);
-    // handleStakedBy(event);
+    handleStakedOn(event);
+    handleStakedBy(event);
 }
 
 export function handleOwnershipTransferred(event: OwnershipTransferred): void {
