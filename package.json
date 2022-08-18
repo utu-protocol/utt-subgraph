@@ -1,14 +1,15 @@
 {
-  "name": "subgraph",
+  "name": "utt-subgraph",
   "license": "UNLICENSED",
   "scripts": {
     "codegen": "graph codegen",
     "build": "graph build",
-    "deploy-staging": "graph deploy --node https://api.thegraph.com/deploy/ utu-testnet/subgraph",
-    "deploy": "graph deploy --node https://api.thegraph.com/deploy/ utu/subgraph",
-    "create-local": "graph create --node http://localhost:8020/ utu-testnet/subgraph",
-    "remove-local": "graph remove --node http://localhost:8020/ utu-testnet/subgraph",
-    "deploy-local": "graph deploy --node http://localhost:8020/ --ipfs http://localhost:5001 utu-testnet/subgraph"
+    "deploy": "graph deploy --product hosted-service utu-protocol/testnet",
+    "deploy-staging": "npm run deploy",
+    "deploy-production": "graph deploy --product hosted-service utu-protocol/mainnet",
+    "create-local": "graph create --node http://localhost:8020/ utu-protocol/testnet",
+    "remove-local": "graph remove --node http://localhost:8020/ utu-protocol/testnet",
+    "deploy-local": "graph deploy --node http://localhost:8020/ --ipfs http://localhost:5001 utu-protocol/testnet"
   },
   "dependencies": {
     "@graphprotocol/graph-cli": "0.30.4",
