@@ -4,9 +4,9 @@
   "scripts": {
     "codegen": "graph codegen",
     "build": "graph build",
-    "deploy": "graph deploy --product hosted-service utu-protocol/testnet",
+    "deploy": "graph deploy --studio utu-protocol-testnet subgraph-testnet.yaml",
     "deploy-staging": "npm run deploy",
-    "deploy-production": "graph deploy --product hosted-service utu-protocol/mainnet",
+    "deploy-production": "graph deploy --studio utu-protocol-mainnet subgraph-mainnet.yaml",
     "create-local": "graph create --node http://localhost:8020/ utu-protocol/testnet",
     "remove-local": "graph remove --node http://localhost:8020/ utu-protocol/testnet",
     "deploy-local": "graph deploy --node http://localhost:8020/ --ipfs http://localhost:5001 utu-protocol/testnet"
