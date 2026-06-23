@@ -1,12 +1,13 @@
 {
   "name": "utt-subgraph",
+  "version": "0.0.2",
   "license": "UNLICENSED",
   "scripts": {
     "codegen": "graph codegen",
     "build": "graph build",
-    "deploy": "graph deploy --studio utu-protocol-testnet subgraph-testnet.yaml",
-    "deploy-staging": "npm run deploy",
-    "deploy-production": "graph deploy --studio utu-protocol-mainnet subgraph-mainnet.yaml",
+    "deploy": "graph deploy --studio utu-protocol-testnet subgraph-testnet.yaml --version-label v$(node -p \"require('./package.json').version\") --deploy-key $GRAPH_DEPLOY_KEY",
+    "deploy-staging": "yarn deploy",
+    "deploy-production": "graph deploy --studio utu-protocol-mainnet subgraph-mainnet.yaml --version-label v$(node -p \"require('./package.json').version\") --deploy-key $GRAPH_DEPLOY_KEY",
     "create-local": "graph create --node http://localhost:8020/ utu-protocol/testnet",
     "remove-local": "graph remove --node http://localhost:8020/ utu-protocol/testnet",
     "deploy-local": "graph deploy --node http://localhost:8020/ --ipfs http://localhost:5001 utu-protocol/testnet"
