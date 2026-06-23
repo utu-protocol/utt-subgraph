@@ -30,7 +30,7 @@ dataSources:
         - name: UTT
           file: ./abis/UTT.json
       eventHandlers:
-        - event: AddConnection(indexed address,indexed uint256,indexed bytes32)
+        - event: AddConnection(indexed address,indexed uint256,indexed bytes32,uint256)
           handler: handleAddConnection
         - event: Approval(indexed address,indexed address,uint256)
           handler: handleApproval

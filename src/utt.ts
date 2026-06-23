@@ -35,6 +35,7 @@ export function handleAddConnection(event: AddConnection): void {
     entity._user = event.params._user;
     entity._connectedTypeId = event.params._connectedTypeId;
     entity._connectedUserIdHash = event.params._connectedUserIdHash;
+    entity.reward = event.params.reward;
 
     // Entities can be written to the store with `.save()`
     entity.save();

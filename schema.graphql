@@ -4,6 +4,7 @@ type ConnectionEntity @entity {
   _user: Bytes # address
   _connectedTypeId: BigInt # uint256
   _connectedUserIdHash: Bytes # hash
+  reward: BigInt # uint256
 }
 
 type EndorseEntity @entity {
